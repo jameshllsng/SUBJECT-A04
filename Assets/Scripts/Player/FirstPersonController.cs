@@ -124,4 +124,12 @@ public class FirstPersonController : MonoBehaviour
     {
         return angle > 180f ? angle - 360f : angle;
     }
+
+    public void ResetControllerState()
+    {
+        verticalVelocity = 0f;
+        yaw = transform.eulerAngles.y;
+        targetPitch = NormalizeAngle(cameraTransform != null ? cameraTransform.localEulerAngles.x : 0f);
+        smoothedPitch = targetPitch;
+    }
 }

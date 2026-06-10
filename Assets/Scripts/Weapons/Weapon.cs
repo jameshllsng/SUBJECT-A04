@@ -1,5 +1,5 @@
-using SubjectA04.HealthSystem;
 using UnityEngine;
+using SubjectA04.HealthSystem;
 
 namespace SubjectA04.Weapons
 {
@@ -66,14 +66,14 @@ namespace SubjectA04.Weapons
 
             Debug.Log($"{name} hit {hit.collider.name}.", hit.collider);
 
-            Health health = hit.collider.GetComponentInParent<Health>();
-            if (health == null)
+            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+            if (damageable == null)
             {
                 return;
             }
 
-            health.TakeDamage(damage);
-            Debug.Log($"{name} caused {damage} damage to {health.name}.", health);
+            damageable.TakeDamage(damage);
+            Debug.Log($"{name} caused {damage} damage to {hit.collider.name}.", hit.collider);
         }
 
         private void AssignCameraIfNeeded()
